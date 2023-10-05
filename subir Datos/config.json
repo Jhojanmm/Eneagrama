@@ -1,0 +1,14 @@
+{
+    "type": "service_account",
+    "project_id": "reservagym-12d15",
+    "private_key_id": "801a24e1f0c73c993fdb8948ea249f0f34e7062e",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8mIzi1pT1xi7m\nNbCTRIrRlsuT2yLsZ7+Yvp/O0mJHNsDJwpJD707+eO29/adN6QD0DgG+2EbeoyDY\nuIYt4xzHRdi63MGYcXNGzkIiosLQ4rP6WzoyUxIok0ryKWdv+xCP6WWRvnaWzMzu\n3lJdf4tzmkj68OF/2D1Ya8KVDNPPBFH99GEf1muAjwUCQaReuPAzD9N/cj+TICzf\nGBIgatHYUHEF2Xoo/F8h5TEMZZjO5NxU5WNYZiG/1HRs5IDLzg0ivqbeZc9yfjpV\nv1L23mFzopH+RGy0BPSHrt44kXETQA2lIBYfU+pQAXE5G9HeQTrlMm3DL5TlvS4S\n4FeffgjfAgMBAAECggEAG1S6Ohdhz/pQCqGmPLlWqsgBKaS8u2jPndmmPClF/88C\nAls1qi2wk3U/8uQjDknhjvzGqPsbziDy3iVjoJvErGZFYdMjJS3vyEeU0wMmW3I3\nJeV5mhhqzcGGv3BboqFORaTLyOLCudjlLArBAfa9ZVvrDp7A9y+FuF4pfUM2IM5e\nLfHpAoeHfrtoSNXHKrNO5jbjiNTwXbcGppWOYZZxTm0e9zr31Z7tyfGkgpmLCgGV\nhuP4Q31uyvSH4EonXTlQr28EYXoy1hO6O0p5OHUgNB8iXrpWaFoUHBy8o5tM2LZy\nKKBdMF6JdkSWM7/TzKM4PT6SO8gsmpd3z3rncT38FQKBgQDo9hDtz6XTujKjqahr\nNU+naeDTrt+YAMH1uc7nnzmQTiR5nF6vut58Vsq4NeXf6mcPLidfVE4mNL7eCR0t\nb9XJqhdD0B5gVUwiAqznRS/0xmEl13S3rWp0wH7RuFQ0bMtIcKrxNE8GWIRwMCMR\n4TE0cE1c34qsUygWb5c8R533mwKBgQDPP0cI8Gf06LCjs5FyZm/U4Y5e9UI0Ipc9\nvxv9xRT7z+Qz/wZYgTT2HBOSqs3mYHqGiAVfm7vz0ujESNmtbk61ftWebFIuL9HK\nuNwlxqtmugXac/aBIiNLR3RilY/Tny8cKHZVzqFFd19Xaj/hp9UDAeYQWqaOSA0m\nb+55ek/CDQKBgCe9sm2fOr6/yNu6mYyQb6IzobL65hHcLzpoFC/XLc68ReSpFE4O\nJt43QCXkq+5i4mnoibbtftdtsBHYpC2YInRgm89ptYThiDdVFYHuf5vWK8R02Ohs\noPiBziCgvVykIpmc/sxfDAwdFZq92321WNuFPO1XBSUYmoIZT0dtQDl5AoGAR+Ax\nOadu1mBxCoU3d06RkGodn08+A6jPfSmvgoZ8bYy/H01eHQnKnWRFYYN9X12sgMXh\n3zO6rqhB8/k0DVMJVybC3WvB4KTTBJSyPSO2xCzV5Np87nIxfWUttxcZx5IYm5Jo\n3/+GrPnmhgGiYBd958obySY3R3czoFYHhffme20CgYEAkd0mJFL8svddkNlhL5Sa\nOJyDGy+I0j0PNUQfe/yosm07N6dWo8ochWW62+zKC9fLlnqhpbh81ENYTgbg4VRn\nyPzn1p/62YqL+WHKq8oBKNx2Qzk0a6VoFR6iuohJN41x44mvwnW2AxqzGRODd20j\n1nZpXkGbpOSzmJIEKKrp1N0=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-pqjch@reservagym-12d15.iam.gserviceaccount.com",
+    "client_id": "106110693508596340907",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-pqjch%40reservagym-12d15.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }
+  

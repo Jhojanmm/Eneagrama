@@ -9,6 +9,16 @@ from PyQt5.QtGui import QColor
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import landscape
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+
+# Configura las credenciales de Firebase (descarga el archivo JSON de tu proyecto Firebase y colócalo en el directorio)
+cred = credentials.Certificate("config.json")
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://reservagym-12d15-default-rtdb.firebaseio.com/'
+})
+
 
 class MiApp(QMainWindow):
     def __init__(self):
@@ -295,7 +305,6 @@ class MiApp(QMainWindow):
 
                 dfAntagonismos['N9'] = df['Dispersión'][8]
 
-                print(dfAntagonismos['N9'])
 
                 columnas = dfAntagonismos.columns.tolist()
 
@@ -335,6 +344,19 @@ class MiApp(QMainWindow):
                 dfEneatipos['Centro'] = ['Físico', 'Emocional', 'Emocional', 'Emocional', 'Intelectual', 'Intelectual', 'Intelectual', 'Físico', 'Físico']
                 dfEneatipos['Energía'] = ['Interna', 'Externa', 'Equilibrio', 'Interna', 'Interna', 'Equilibrio', 'Externa', 'Externa', 'Equilibrio']
 
+                dfEneatipos['Eneatipos'] = [1,2,3,4,5,6,7,8,9]
+
+                dfEneatipos = dfEneatipos.sort_values(by='Resultado', ascending=False)
+                
+
+                dfEneatipos.index = [0,1,2,3,4,5,6,7,8]
+
+                
+
+                indices = dfEneatipos.index
+
+                
+
                 columnas = dfEneatipos.columns.tolist()
 
                 # Configura el número de columnas y sus etiquetas en la QTableWidget
@@ -346,7 +368,8 @@ class MiApp(QMainWindow):
 
                 # Agrega los datos del DataFrame a la QTableWidget
                 for index, row_data in dfEneatipos.iterrows():
-                    self.tablaEneatipos.insertRow(index)
+                    self.tablaEneatipos.insertRow(indices.values[index])
+                    indice = indices.values[index]
                     for col_idx, cell_data in enumerate(row_data):
                         item = QTableWidgetItem(str(cell_data))
                         
@@ -354,6 +377,106 @@ class MiApp(QMainWindow):
 
                 self.tablaEneatipos.horizontalHeader().setStretchLastSection(True)
                 self.tablaEneatipos.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+
+#########################################################
+    #### Eneatipo 2 ############
+                print("\n\n")
+                dfEneatipos2 = pd.DataFrame()
+                dfEneatipos2.index.name = 'Eneatipos'
+                dfEneatipos2['Principales'] = [dfEneatipos['Eneatipos'][0],dfEneatipos['Eneatipos'][1],dfEneatipos['Eneatipos'][2]]
+                dfEneatipos2['Integra'] = [dfEneatipos['Integración'][0],dfEneatipos['Integración'][1],dfEneatipos['Integración'][2]]
+                
+                lista = []
+                for j in range(3):
+                    for i in range(9):
+                        if dfEneatipos['Integración'][j] == i + 1:
+                            lista.append(df['Puntaje'][i])
+
+                dfEneatipos2['Valor N Integra'] = lista
+                dfEneatipos2['Desintegra'] = [dfEneatipos['Desintegración'][0],dfEneatipos['Desintegración'][1],dfEneatipos['Desintegración'][2]]
+                
+                lista = []
+                for j in range(3):
+                    for i in range(9):
+                        if dfEneatipos['Desintegración'][j] == i + 1:
+                            lista.append(df['Puntaje'][i])
+
+                dfEneatipos2['Valor N Desintegra'] = lista
+
+                lista = []
+
+                for j in range(3):
+                    if dfEneatipos2['Integra'][j] >= 17 and dfEneatipos2['Desintegra'][j] < 17:
+                        resultado = "Integrado/Alto desempeño"
+                    elif dfEneatipos2['Integra'][j] < 17 and dfEneatipos2['Desintegra'][j] >= 17:
+                        resultado = "Desintegrado/En Tensión"
+                    elif dfEneatipos2['Integra'][j] < 17 and dfEneatipos2['Desintegra'][j] < 17:
+                        resultado = "ZC Pasiva"
+                    elif dfEneatipos2['Integra'][j] >= 17 and dfEneatipos2['Desintegra'][j] >= 17:
+                        resultado = "ZC Activa"
+                    else:
+                        resultado = "error"
+                    lista.append(resultado)
+
+                
+                dfEneatipos2['Valor Desintegracion'] = lista
+
+                columnas = dfEneatipos2.columns.tolist()
+
+                # Configura el número de columnas y sus etiquetas en la QTableWidget
+                self.result.setColumnCount(len(columnas))
+                self.result.setHorizontalHeaderLabels(columnas)
+
+                # Limpia la tabla
+                self.result.setRowCount(0)
+
+                # Agrega los datos del DataFrame a la QTableWidget
+                for index, row_data in dfEneatipos2.iterrows():
+                    self.result.insertRow(indices.values[index])
+                    indice = indices.values[index]
+                    for col_idx, cell_data in enumerate(row_data):
+                        item = QTableWidgetItem(str(cell_data))
+                        
+                        self.result.setItem(index, col_idx, item)
+
+                self.result.horizontalHeader().setStretchLastSection(True)
+                self.result.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+                
+
+
+                ########## Eneatipos ##############3333
+                ref = db.reference('/Eneagrama/Eneatipo/')
+                # Leer datos
+                data = ref.get()
+                for j in range(3):
+                    for i in range(9):
+                        print("\n")
+                        print("Eneatipo #",dfEneatipos2['Principales'][j])
+                        if(dfEneatipos2['Valor Desintegracion'][j] == "Integrado/Alto desempeño"):
+                            
+                            print("Integrado/Alto desempeño")
+                            print(data[dfEneatipos2["Principales"][j]]['alto_desempeno'])
+                            break
+                        elif(dfEneatipos2['Valor Desintegracion'][j] == "Desintegrado/En Tensión"):
+                            print("Desintegrado/En Tensión")
+                            print(data[dfEneatipos2["Principales"][j]]['alto_desempeno'])
+                            break
+
+                        elif(dfEneatipos2['Valor Desintegracion'][j] == "ZC Activa"):
+                            print("ZC Activa")
+                            print(data[dfEneatipos2["Principales"][j]]['alto_desempeno'])
+                            break
+
+                        elif(dfEneatipos2['Valor Desintegracion'][j] == "ZC Pasiva"):
+                            print("ZC Pasiva")
+                            print(data[dfEneatipos2["Principales"][j]]['alto_desempeno'])
+                            break
+
+
+                        print("################################################################")
+                        
+                        
 
 
 
@@ -443,6 +566,10 @@ class MiApp(QMainWindow):
         elements = []
         elements.append(table)
         doc.build(elements)
+
+
+
+            
 
 
 if __name__ == "__main__":
